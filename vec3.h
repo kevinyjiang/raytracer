@@ -10,7 +10,7 @@ public:
 	vec3() : v{ 0, 0, 0 } {}
 	vec3(double i, double j, double k) : v{ i, j, k } {}
 
-	double operator[](const int i) const { if (i >= 0 && i < 3) return v[i]; }
+	double operator[](const int i) const { return (i >= 0 && i < 3) ?  v[i] : 0.0; }
 	double& operator[](const int i) { if (i >= 0 && i < 3) return v[i]; }
 	double x() const { return v[0]; }
 	double y() const { return v[1]; }
@@ -84,6 +84,7 @@ inline vec3 cross(const vec3& u, const vec3& v) {
 		u.x() * v.y() - u.y() * v.x()
 	);
 }
+
 inline std::ostream& operator<<(std::ostream &out, const vec3 &v) {
     return out << v[0] << ' ' << v[1] << ' ' << v[2];
 }
@@ -110,4 +111,8 @@ inline vec3 operator*(const vec3 &v, double t) {
 
 inline vec3 operator/(vec3 v, double t) {
     return (1/t) * v;
+}
+
+inline vec3 unit_vector(vec3 v) {
+    return v / v.length();
 }
