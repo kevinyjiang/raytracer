@@ -16,8 +16,8 @@ public:
 	double y() const { return v[1]; }
 	double z() const { return v[2]; }
 
-	vec3 operator*(const double scale) const {
-		return vec3(scale * v[0], scale * v[1], scale * v[2]);
+	vec3 operator*(const double scalar) const {
+		return vec3(scalar * v[0], scalar * v[1], scalar * v[2]);
 	}
 
 	vec3 operator-() const {
