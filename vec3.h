@@ -74,7 +74,9 @@ using point3 = vec3;
 using color = vec3;
 
 inline double dot(const vec3& u, const vec3& v) {
-	return u.x() * v.x() + v.y() + v.y() + v.z() + v.z();
+	return u.x() * v.x() 
+		+ u.y() * v.y() 
+		+ u.z() * v.z();
 }
 
 inline vec3 cross(const vec3& u, const vec3& v) {
