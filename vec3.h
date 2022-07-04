@@ -4,6 +4,7 @@
 #include <iostream>
 
 using std::sqrt;
+using std::fabs;
 
 class vec3 {
 public:
@@ -74,6 +75,12 @@ public:
         return vec3(random_double(min,max), random_double(min,max), random_double(min,max));
     }
 
+	bool near_zero() const {
+        // Return true if the vector is close to zero in all dimensions.
+        const auto s = 1e-8;
+        return (fabs(v[0]) < s) && (fabs(v[1]) < s) && (fabs(v[2]) < s);
+    }
+
 private:
 	double v[3];
 };
@@ -133,4 +140,20 @@ inline vec3 random_in_unit_sphere() {
         if (p.length_squared() >= 1) continue;
         return p;
     }
+}
+
+inline vec3 random_unit_vector() {
+    return unit_vector(random_in_unit_sphere());
+}
+
+inline vec3 random_in_hemisphere(const vec3& normal) {
+    vec3 in_unit_sphere = random_in_unit_sphere();
+    if (dot(in_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+        return in_unit_sphere;
+    else
+        return -in_unit_sphere;
+}
+
+inline vec3 reflect(const vec3& v, const vec3& n) {
+    return v - 2*dot(v,n)*n;
 }
