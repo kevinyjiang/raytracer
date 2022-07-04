@@ -66,6 +66,14 @@ public:
 		return v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
 	}
 
+	inline static vec3 random() {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max) {
+        return vec3(random_double(min,max), random_double(min,max), random_double(min,max));
+    }
+
 private:
 	double v[3];
 };
@@ -117,4 +125,12 @@ inline vec3 operator/(vec3 v, double t) {
 
 inline vec3 unit_vector(vec3 v) {
     return v / v.length();
+}
+
+inline vec3 random_in_unit_sphere() {
+    while (true) {
+        auto p = vec3::random(-1,1);
+        if (p.length_squared() >= 1) continue;
+        return p;
+    }
 }

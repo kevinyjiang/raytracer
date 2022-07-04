@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ray.h"
+#include "constants.h"
 
 struct hit_record {
     point3 p;
