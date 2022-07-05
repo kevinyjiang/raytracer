@@ -18,6 +18,8 @@ color ray_color(const ray& r, const hittable& world, int depth) {
     if (world.hit(r, 0.0001, infinity, rec)) {
         ray scattered;
         color attenuation;
+        // Abstract away scatter calculation to depend on material type
+        // Diffuse uses randomized vector addition, metal uses reflection formula
         if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
             return attenuation * ray_color(scattered, world, depth-1);
         return color(0,0,0);
