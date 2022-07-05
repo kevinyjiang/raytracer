@@ -5,11 +5,13 @@
 #include "sphere.h"
 #include "camera.h"
 #include "material.h"
+#include "moving_sphere.h"
 
 #include <iostream>
+#include <ctime>
 
 hittable_list random_scene() {
-    const color metals[2] = { color(.83, .7, .36), color(.9, .9, .9) };
+    const color metals[2] = { color(.83, .7, .36), color(.01, .01, .01) };
     const color shiny[2] = { color(.95, .95, .95), color(.08, .08, .08) };
 
     hittable_list world;
@@ -26,13 +28,15 @@ hittable_list random_scene() {
                 shared_ptr<material> sphere_material;
                 auto choose_albedo = static_cast<int>(random_double(0, 2));
                 if (choose_mat < 0.4) {
-                    // shiny
-                    auto albedo = shiny[choose_albedo];
-                    sphere_material = make_shared<metal>(albedo, 0);
-                    world.add(make_shared<sphere>(center, 0.25, sphere_material));
-                } else if (choose_mat < 0.7) {
-                    // metal
+                    // shiny, bouncing
                     auto albedo = metals[choose_albedo];
+                    sphere_material = make_shared<metal>(albedo, 0);
+                    auto center2 = center + vec3(0, random_double(0,.5), 0);
+                    world.add(make_shared<moving_sphere>(
+                        center, center2, 0.0, 1.0, 0.25, sphere_material));
+                } else if (choose_mat < 0.8) {
+                    // metal
+                    auto albedo = shiny[choose_albedo];
                     auto fuzz = random_double(.5, 1);
                     sphere_material = make_shared<metal>(albedo, fuzz);
                     world.add(make_shared<sphere>(center, 0.25, sphere_material));
@@ -98,9 +102,9 @@ int main() {
     point3 lookat(0,0,0);
     vec3 vup(0,1,0);
     auto dist_to_focus = 10.0;
-    auto aperture = 0.18;
+    auto aperture = 0.1;
 
-    camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+    camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus, 0.0, 1.0);
         
     // Render
 
