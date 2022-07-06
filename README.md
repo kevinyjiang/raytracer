@@ -6,7 +6,7 @@ progress so far:
 - diffuse shading, metal reflection, refraction, motion blur, defocus blur (depth of field)
 - basic anti-aliasing
 
-![asdsd](https://user-images.githubusercontent.com/24910768/177444117-450fc743-a647-41f0-9ae2-db949506b299.png)
+![asdi](https://user-images.githubusercontent.com/24910768/177608805-b732432a-cc7e-439f-9417-be92d098376d.png)
 
 ![i23](https://user-images.githubusercontent.com/24910768/177240571-66356455-d02c-4e9e-be8d-e97b363d3126.png)
 
