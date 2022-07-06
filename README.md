@@ -2,9 +2,11 @@
 side project implementing a raytracer in C++. based on [Peter Shirley's book](https://raytracing.github.io/books/RayTracingInOneWeekend.html) and [Michael Reed's graphics course](http://www.cs.columbia.edu/~cs4160/).
 
 progress so far:
-- basic anti-aliasing
 - basic recursive ray tracing with hittable scene, materials, camera set up
-- diffuse shading, metal reflection, refraction
+- diffuse shading, metal reflection, refraction, motion blur, defocus blur (depth of field)
+- basic anti-aliasing
+
+![asdsd](https://user-images.githubusercontent.com/24910768/177444117-450fc743-a647-41f0-9ae2-db949506b299.png)
 
 ![i23](https://user-images.githubusercontent.com/24910768/177240571-66356455-d02c-4e9e-be8d-e97b363d3126.png)
 
