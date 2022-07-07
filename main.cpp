@@ -6,6 +6,7 @@
 #include "camera.h"
 #include "material.h"
 #include "moving_sphere.h"
+#include "bvh.h"
 
 #include <iostream>
 #include <ctime>
@@ -87,14 +88,15 @@ int main() {
     std::srand(std::time(0));
     
     const auto aspect_ratio = 16.0 / 9.0;
-    const int image_width = 1280;
+    const int image_width = 300;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 500;
+    const int samples_per_pixel = 100;
     const int max_depth = 50;
 
     // World
 
-    auto world = random_scene();
+    auto world_raw = random_scene();
+    bvh_node world(world_raw, 0, 0);
 
     // Camera
 

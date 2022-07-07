@@ -22,7 +22,7 @@ class hittable_list : public hittable {
         virtual bool bounding_box(
             double time0, double time1, aabb& output_box) const override;
 
-    private:
+    public:
         std::vector<shared_ptr<hittable>> objects;
 };
 
