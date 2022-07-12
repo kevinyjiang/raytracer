@@ -2,7 +2,6 @@ CC = g++
 
 CFLAGS = -std=c++11 
 
-# The build target 
 TARGET = main
 
 rt: 
@@ -10,7 +9,6 @@ rt:
 
 clean:
 	$(RM) rt
-	$(RM) *.ppm
 	
 image:
 	./rt > i.ppm
