@@ -1,65 +1,12 @@
 #include "constants.h"
 
 #include "color.h"
-#include "hittable_list.h"
-#include "sphere.h"
 #include "camera.h"
-#include "material.h"
-#include "moving_sphere.h"
 #include "bvh.h"
+#include "scenes.h"
 
 #include <iostream>
 #include <ctime>
-
-hittable_list random_scene() {
-    const color metals[2] = { color(.83, .7, .36), color(.01, .01, .01) };
-    const color shiny[2] = { color(.95, .95, .95), color(.08, .08, .08) };
-
-    hittable_list world;
-
-    auto ground_material = make_shared<lambertian>(color(0.9, 0.9, 0.9));
-    world.add(make_shared<sphere>(point3(0,-1000,0), 1000, ground_material));
-
-    for (int a = -10; a < 10; a++) {
-        for (int b = -8; b < 8; b++) {
-            auto choose_mat = random_double();
-            point3 center(a + 0.9*random_double(), 0.25, b + 0.9*random_double());
-
-            if ((center - point3(3, 0.25, 0)).length() > .9) {
-                shared_ptr<material> sphere_material;
-                auto choose_albedo = static_cast<int>(random_double(0, 2));
-                if (choose_mat < 0.4) {
-                    // shiny, bouncing
-                    auto albedo = metals[choose_albedo];
-                    sphere_material = make_shared<metal>(albedo, 0);
-                    auto center2 = center + vec3(0, random_double(0,.5), 0);
-                    world.add(make_shared<moving_sphere>(
-                        center, center2, 0.0, 1.0, 0.25, sphere_material));
-                } else if (choose_mat < 0.8) {
-                    // metal
-                    auto albedo = shiny[choose_albedo];
-                    auto fuzz = random_double(.5, 1);
-                    sphere_material = make_shared<metal>(albedo, fuzz);
-                    world.add(make_shared<sphere>(center, 0.25, sphere_material));
-                } else {
-                    // glass
-                    sphere_material = make_shared<dielectric>(1.5);
-                    world.add(make_shared<sphere>(center, 0.25, sphere_material));
-                }
-            }
-        }
-    }
-
-    auto material1 = make_shared<dielectric>(1.5);
-    world.add(make_shared<sphere>(point3(1.5, 1, 0), 1, material1));
-    world.add(make_shared<sphere>(point3(1.5, 1, 0), -.92, material1));
-
-    auto material3 = make_shared<metal>(color(.83, .7, .36), 0.0); 
-    world.add(make_shared<sphere>(point3(3, .75, -.5), .75, material3));
-   
-
-    return world;
-}
 
 color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec;
