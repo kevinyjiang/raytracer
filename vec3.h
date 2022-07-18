@@ -11,8 +11,8 @@ public:
 	vec3() : v{ 0, 0, 0 } {}
 	vec3(double i, double j, double k) : v{ i, j, k } {}
 
-	double operator[](const int i) const { return (i >= 0 && i < 3) ?  v[i] : 0.0; }
-	double& operator[](const int i) { if (i >= 0 && i < 3) return v[i]; }
+	double operator[](const int i) const { return v[i]; }
+	double& operator[](const int i) { return v[i]; }
 	double x() const { return v[0]; }
 	double y() const { return v[1]; }
 	double z() const { return v[2]; }
