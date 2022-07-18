@@ -54,3 +54,13 @@ class camera {
         double lens_radius;
         double time0, time1;
 };
+
+inline camera camera_with_time(const double aspect_ratio, double t0 = 0, double t1 = 1) {
+    point3 lookfrom(11.5,3,3);
+    point3 lookat(0,0,0);
+    vec3 vup(0,1,0);
+    auto dist_to_focus = 10.0;
+    auto aperture = 0.1;
+
+    return camera(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus, t0, t1);
+}

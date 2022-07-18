@@ -3,6 +3,28 @@
 #include "vec3.h"
 #include <iostream>
 
+color ray_color(const ray& r, const hittable& world, int depth) {
+    hit_record rec;
+
+    if (depth <= 0)
+        return color(0,0,0);
+
+    if (world.hit(r, 0.001, infinity, rec)) {
+        ray scattered;
+        color attenuation;
+        // Abstract away scatter calculation to depend on material type
+        // Diffuse uses randomized vector addition, metal uses reflection formula
+        if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+            return attenuation * ray_color(scattered, world, depth-1);
+        return color(0,0,0);
+    }
+
+    // linear interpolation to create a soft gradiant background
+    vec3 unit_direction = unit_vector(r.direction());
+    auto t = 0.5*(unit_direction.y() + 1.0);
+    return (1.0-t)*color(1, 1, 1) + t*color(.5, .7, 1);
+}
+
 void write_color(std::ostream& out, color c) {
     out << static_cast<int>(255.999 * c.x()) << ' '
         << static_cast<int>(255.999 * c.y()) << ' '
