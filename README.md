@@ -1,5 +1,5 @@
 # raytracer
-side project implementing a raytracer in C++. based on [Peter Shirley's book](https://raytracing.github.io/books/RayTracingInOneWeekend.html) and [Michael Reed's graphics course](http://www.cs.columbia.edu/~cs4160/).
+side project implementing a raytracer in C++. based on [Peter Shirley's books](https://raytracing.github.io/) and [Michael Reed's graphics course](http://www.cs.columbia.edu/~cs4160/).
 
 progress so far:
 - recursive ray tracing with hittable scene, materials, camera set up
