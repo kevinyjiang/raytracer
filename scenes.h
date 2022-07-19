@@ -12,9 +12,6 @@ void _add_ground(hittable_list& world, color ground_color, int ground_size) {
 }
 
 hittable_list defocus_blur_demo() {
-    const color metals[2] = { color(.83, .7, .36), color(.01, .01, .01) };
-    const color shiny[2] = { color(.95, .95, .95), color(.08, .08, .08) };
-
     hittable_list world;
     _add_ground(world, color(0.9, 0.9, 0.9), 1000);
 
@@ -57,9 +54,6 @@ hittable_list defocus_blur_demo() {
 }
 
 hittable_list motion_blur_demo() {
-    const color metals[2] = { color(.83, .7, .36), color(.01, .01, .01) };
-    const color shiny[2] = { color(.95, .95, .95), color(.08, .08, .08) };
-
     hittable_list world;
     _add_ground(world, color(0.9, 0.9, 0.9), 1000);
 
