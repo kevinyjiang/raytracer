@@ -12,8 +12,6 @@ side project implementing a raytracer in C++. based on [Peter Shirley's books](h
 
 ![i23](https://user-images.githubusercontent.com/24910768/177240571-66356455-d02c-4e9e-be8d-e97b363d3126.png)
 
-![21](https://user-images.githubusercontent.com/24910768/177230659-d2cffaef-4505-48ff-af37-595b2611a02d.png)
-
 ## todo:
 - parser for scene text files, so we don't have to hardcode every object we want to render
 - texture maps
